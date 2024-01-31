@@ -11,4 +11,8 @@ import { Pokemon } from '../pokemon';
 
 export class PokemonComponent {
   @Input() pokemon!: Pokemon
+
+  handleClick() {
+    console.log('id', this.pokemon.id)
+  }
 }

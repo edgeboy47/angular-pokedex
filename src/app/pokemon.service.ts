@@ -19,12 +19,12 @@ export class PokemonService {
 
     if (!res || !res.ok || res.status !== 200) return [];
 
-    console.log('res', res);
     const json = await res.json();
 
     const results = (json?.results || []) as { name: string; url: string }[];
     return results.map((poke) => ({
       ...poke,
+      id: poke.url.split('/').at(-2),
       imgUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.url.split('/').at(-2)}.png`,
     })) as Pokemon[];
   }

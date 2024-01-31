@@ -31,4 +31,12 @@ export class AppComponent {
     this.offset = this.offset > 0 ? this.offset - this.limit : 0
     this.pokemon = await this.pokemonService.getPokemon(this.limit, this.offset)
   }
+
+  async changeLimit(limit: string) {
+    const newLimit = parseInt(limit)
+
+    this.limit = newLimit
+    this.offset = 0
+    this.pokemonService.getPokemon(this.limit, this.offset).then(list => this.pokemon = list)
+  }
 }

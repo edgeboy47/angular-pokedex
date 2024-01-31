@@ -1,7 +1,7 @@
 <style>
   .main {
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    min-width: 100vw;
     background-color: #cfcfcf
   }
 </style>
@@ -12,8 +12,13 @@
       <pokemon-card *ngFor="let item of pokemon" [pokemon]="item" />
     </div>
     <div class='flex flex-row gap-16 p-12'>
-      <button class='bg-white/50 rounded-lg px-4 py-2'(click)="getNextPage()">Next</button>
       <button class='bg-white/50 rounded-lg px-4 py-2'(click)="getPrevPage()" *ngIf="offset > 0">Prev</button>
+      <button class='bg-white/50 rounded-lg px-4 py-2'(click)="getNextPage()">Next</button>
+      <select class='p-2 rounded-lg' (change)='changeLimit(limitSelect.value)' #limitSelect >
+        <option value='10' [selected]="limit === 10">10</option>
+        <option value='20' [selected]="limit === 20">20</option>
+        <option value='30' [selected]="limit === 30">30</option>
+      </select>
     </div>
   </div>
 </main>
